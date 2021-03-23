@@ -24,6 +24,6 @@ jobs:
           echo '### 1'
           echo $(git log --format=%B -n 1 HEAD)
           echo '### 2'
-          echo $(git log --format=%B -n 1 HEAD)  | grep -q [^]]
+          echo $(git log --format=%B -n 1 HEAD  | grep -q [^]])
           
       # npx cut-release ${{ github.event.head_commit.message }}
