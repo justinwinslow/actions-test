@@ -3,6 +3,8 @@ name: Release
 # Controls when the action will run.
 on:
   workflow_dispatch:
+  
+  commit: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,9 +18,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          # We need to fetch with a depth of 2 for pull_request so we can do HEAD^2
-          fetch-depth: 2
       # Runs a set of commands using the runners shell
       - name: Test git commit message
         run: |
