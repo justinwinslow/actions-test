@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ github.event.inputs.version }}
-    if: !contains(['patch', 'minor', 'major'], github.event.inputs.version)
+    if: ${{ !contains(['patch', 'minor', 'major'], github.event.inputs.version) }}
     steps:
       - name: Version supplied is not valid
         run: |
