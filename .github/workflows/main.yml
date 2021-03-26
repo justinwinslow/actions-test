@@ -33,8 +33,15 @@ jobs:
           echo $VERSION
           echo '### commit message'
           echo $(git log --format=%B -n 1 HEAD | awk -F '[][]' '{print $2}')
-
-    
+  error: 
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+    if: ${{ cancelled() }}
+    steps:
+      - name: Version supplied is not valid
+        run: |
+          echo 'Version should be "patch", "minor", or "major"' 
     
     
     
