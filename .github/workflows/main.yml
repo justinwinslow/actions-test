@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ github.event.inputs.version }}
+    if: ${{ ['patch', 'minor', 'major'].indexOf(github.event.inputs.version) > -1 }}
     # if: contains(github.event.head_commit.message, '[patch]') || contains(github.event.head_commit.message, '[minor]')
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,3 +33,18 @@ jobs:
           echo $VERSION
           echo '### commit message'
           echo $(git log --format=%B -n 1 HEAD | awk -F '[][]' '{print $2}')
+  error: 
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version }}
+    if: ${{ ['patch', 'minor', 'major'].indexOf(github.event.inputs.version) == -1 }}
+    steps:
+      - name: Version supplied is not valid
+        run: |
+          echo 'Version should be "patch", "minor", or "major"'
+    
+    
+    
+    
+    
+    
