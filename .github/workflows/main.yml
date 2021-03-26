@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ github.event.inputs.version }}
-    if: contains(fromJson(['patch', 'minor', 'major']), github.event.inputs.version)
+    if: contains(fromJson('["patch", "minor", "major"]'), github.event.inputs.version)
     # if: contains(github.event.head_commit.message, '[patch]') || contains(github.event.head_commit.message, '[minor]')
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
