@@ -38,7 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ github.event.inputs.version }}
-    if: !contains(fromJson('["patch", "minor", "major"]'), github.event.inputs.version)
+    # Negating contains, unfortunately, doesn't work
+    # if: !contains(fromJson('["patch", "minor", "major"]'), github.event.inputs.version)
+    if: false
     steps:
       - name: Version supplied is not valid
         run: |
